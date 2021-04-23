@@ -1,0 +1,11 @@
+{
+  "database": {
+    "url": "127.0.0.1:5432",
+    "user": "jungmin",
+    "password": "g79465",
+    "name": "naverwebtoon"
+  },
+  "naverwebtoon": {
+    "url":"https://comic.naver.com/webtoon/weekdayList.nhn?week="
+  }
+}
