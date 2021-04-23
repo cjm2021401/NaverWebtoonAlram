@@ -3,6 +3,8 @@ package cron
 import (
 	"NaverWebtoonAlram/postgresql/model"
 	"NaverWebtoonAlram/postgresql/query"
+	"NaverWebtoonAlram/slack"
+	"fmt"
 	"log"
 	_ "log"
 	"time"
@@ -43,12 +45,16 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+				for i := range EndWebtoon{
+					slack.SendSlackEndWebtoon(EndWebtoon[i], "일요일")
+				}
 				err :=query.Delete_Endtoon_sunday(EndWebtoon)
 				if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.SUNDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i],"일요일")
 						var data model.SUNDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -79,12 +85,16 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "월요일")
+					}
 					err :=query.Delete_Endtoon_monday(EndWebtoon)
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.MONDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "월요일")
 						var data model.MONDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -116,12 +126,16 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "화요일")
+					}
 					err :=query.Delete_Endtoon_tuesday(EndWebtoon)
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.TUESDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "화요일")
 						var data model.TUESDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -153,12 +167,16 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "수요일")
+					}
 					err :=query.Delete_Endtoon_wednesday(EndWebtoon)
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.WEDNESDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "수요일")
 						var data model.WEDNESDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -194,8 +212,12 @@ func DailydataCheck() {
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "목요일")
+					}
 					var dataset []model.THURSDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "목요일")
 						var data model.THURSDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -227,12 +249,17 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+					fmt.Println(EndWebtoon)
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "금요일")
+					}
 					err :=query.Delete_Endtoon_friday(EndWebtoon)
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.FRIDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "금요일")
 						var data model.FRIDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)
@@ -264,12 +291,16 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
+					for i := range EndWebtoon{
+						slack.SendSlackEndWebtoon(EndWebtoon[i], "토요일")
+					}
 					err :=query.Delete_Endtoon_saturday(EndWebtoon)
 					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
 				}
 				if len(NewWebtoon)!=0{
 					var dataset []model.SATURDAY_DB
 					for i := range NewWebtoon {
+						slack.SendSlackStartWebtoon(NewWebtoon[i], "토요일")
 						var data model.SATURDAY_DB
 						data.Toon=NewWebtoon[i]
 						dataset = append(dataset, data)

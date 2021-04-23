@@ -6,17 +6,13 @@ import (
 )
 
 func SetupCron(location string) (*cron.Cron, error) {
-
+	//ReadWriteAllday()  처음 세팅할때만 돌림
 	loc, err := time.LoadLocation(location)
 	if err != nil {
 		return nil, err
 	}
 	c := cron.New(cron.WithLocation(loc))
-	_,err=c.AddFunc("0 0 1 1 *",  ReadWriteAllday)
-	if err != nil {
-		return nil, err
-	}
-	_,err=c.AddFunc("0/1 * * * *",  DailydataCheck)
+	_,err=c.AddFunc("0 8 * * *",  DailydataCheck)//매일 8시에 확인
 	if err != nil {
 		return nil, err
 	}

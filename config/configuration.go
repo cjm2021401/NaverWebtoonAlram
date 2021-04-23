@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Database Database
 	NaverWebtoon NaverWebtoon
+	SlackWebhook SlackWebhook
 }
 type Database struct {
 	Url      string
@@ -18,6 +19,9 @@ type Database struct {
 }
 
 type NaverWebtoon struct {
+	Url string
+}
+type SlackWebhook struct {
 	Url string
 }
 
