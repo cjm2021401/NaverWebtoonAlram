@@ -4,34 +4,25 @@ import (
 	"NaverWebtoonAlram/config"
 	"NaverWebtoonAlram/postgresql/model"
 	"NaverWebtoonAlram/postgresql/query"
-	"context"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/chromedp/chromedp"
 	"log"
-	"strings"
+	"net/http"
 )
 
-func ReadWebSite(dayofweek string)(string , error){
-	context, cancelFunc := chromedp.NewContext(
-		context.Background(),
-		chromedp.WithLogf(log.Printf),
-	)
-	defer cancelFunc()
+func ReadWebSite(dayofweek string)(*http.Response , error){
 
-	var strVar string
-	err := chromedp.Run(context,
-		chromedp.Navigate(config.Env.NaverWebtoon.Url+dayofweek),
-		chromedp.OuterHTML("html", &strVar),
-	)//chrome을 backgroud로 뛰운 후 모든 html을 strvar로 뺌
-
-	return strVar, err
+	resp, err := http.Get(config.Env.NaverWebtoon.Url+dayofweek)
+	if err != nil {
+		panic(err)
+	}
+	return resp, err
 }
 
 func ReadMonday()([]model.MONDAY_DB) {
 	strVar1, err:=ReadWebSite("mon")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	mon_data := make([]model.MONDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.MONDAY_DB
 		width, ok := s.Attr("width")
@@ -61,7 +52,7 @@ func ReadTuesday()([]model.TUESDAY_DB){
 	strVar1, err:=ReadWebSite("tue")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	tue_data := make([]model.TUESDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.TUESDAY_DB
 		width, ok := s.Attr("width")
@@ -91,7 +82,7 @@ func ReadWednesday()([]model.WEDNESDAY_DB){
 	strVar1, err:=ReadWebSite("wed")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	wed_data := make([]model.WEDNESDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.WEDNESDAY_DB
 		width, ok := s.Attr("width")
@@ -121,7 +112,7 @@ func ReadThursday()([]model.THURSDAY_DB){
 	strVar1, err:=ReadWebSite("thu")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	thu_data := make([]model.THURSDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.THURSDAY_DB
 		width, ok := s.Attr("width")
@@ -153,7 +144,7 @@ func ReadFriday()([]model.FRIDAY_DB){
 	strVar1, err:=ReadWebSite("fri")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	fri_data := make([]model.FRIDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.FRIDAY_DB
 		width, ok := s.Attr("width")
@@ -185,7 +176,7 @@ func ReadSaturday()([]model.SATURDAY_DB){
 	strVar1, err:=ReadWebSite("sat")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	sat_data := make([]model.SATURDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.SATURDAY_DB
 		width, ok := s.Attr("width")
@@ -217,7 +208,7 @@ func ReadSunday()([]model.SUNDAY_DB){
 	strVar1, err:=ReadWebSite("sun")
 	if err!=nil{log.Fatalf("Can't run chromedp, %v", err)}
 	sun_data := make([]model.SUNDAY_DB, 0, 0)
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(strVar1))
+	doc, _ := goquery.NewDocumentFromReader(strVar1.Body)
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
 		var data model.SUNDAY_DB
 		width, ok := s.Attr("width")

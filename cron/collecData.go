@@ -41,8 +41,23 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+				err :=query.Delete_Endtoon_sunday(EndWebtoon)
+				if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.SUNDAY_DB
+					for i := range NewWebtoon {
+						var data model.SUNDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_sunday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
-
 			break
 		}
 		case 1:{
@@ -62,6 +77,22 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_monday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.MONDAY_DB
+					for i := range NewWebtoon {
+						var data model.MONDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_monday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
 
 			break
@@ -83,6 +114,22 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_tuesday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.TUESDAY_DB
+					for i := range NewWebtoon {
+						var data model.TUESDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_tuesday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
 
 			break
@@ -104,6 +151,22 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_wednesday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.WEDNESDAY_DB
+					for i := range NewWebtoon {
+						var data model.WEDNESDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_wednesday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
 
 			break
@@ -125,6 +188,22 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_thursday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.THURSDAY_DB
+					for i := range NewWebtoon {
+						var data model.THURSDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_thursday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
 
 			break
@@ -146,6 +225,22 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_friday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.FRIDAY_DB
+					for i := range NewWebtoon {
+						var data model.FRIDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_friday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
 
 			break
@@ -167,45 +262,49 @@ func DailydataCheck() {
 			NewWebtoon, EndWebtoon:=CompareData(new, existed)
 			if (len(NewWebtoon)==0 && len(EndWebtoon)==0){
 				log.Println("Nothing changed")
+			}else{
+				if len(EndWebtoon)!=0{
+					err :=query.Delete_Endtoon_saturday(EndWebtoon)
+					if err != nil {{log.Fatalf("Can't read data from DB, %v", err)}}else{log.Println("Success to delete endwebtoon data")}
+				}
+				if len(NewWebtoon)!=0{
+					var dataset []model.SATURDAY_DB
+					for i := range NewWebtoon {
+						var data model.SATURDAY_DB
+						data.Toon=NewWebtoon[i]
+						dataset = append(dataset, data)
+					}
+					result, err:=query.Insert_saturday(dataset)
+					if err!=nil {log.Fatalf("Can't write data in DB, %v", err)}
+					if result!=nil {log.Println("new webtoon data insert success")}
+				}
 			}
-
 			break
 		}
 	}
 
 }
 
-type New_EndToon struct {
-	id int
-	toon string
-}
-
-func CompareData(new []string, existed []string) ([]New_EndToon, []New_EndToon) {
-	var NewToon []New_EndToon
-	var EndToon []New_EndToon
+func CompareData(new []string, existed []string) ([]string, []string) {
+	var NewToon []string
+	var EndToon []string
 	for i := range new {
 		var count =0
-		var New New_EndToon
 		for j := range existed {
 			if new[i]==existed[j]{count++}
 		}
 		if count==0{
-			New.id=i
-			New.toon=new[i]
-			NewToon = append(NewToon, New)
+			NewToon = append(NewToon, new[i])
 		}
 	}
 
 	for i := range existed {
 		var count =0
-		var End New_EndToon
 		for j := range new {
 			if existed[i]==new[j]{count++}
 		}
 		if count==0{
-			End.id=i
-			End.toon=new[i]
-			EndToon = append(EndToon, End)
+			EndToon = append(EndToon, existed[i])
 		}
 	}
 	return NewToon, EndToon

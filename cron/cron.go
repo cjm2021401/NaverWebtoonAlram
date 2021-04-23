@@ -20,5 +20,6 @@ func SetupCron(location string) (*cron.Cron, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return c, nil
 }

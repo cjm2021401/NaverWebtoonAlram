@@ -3,6 +3,7 @@ package query
 import (
 	"NaverWebtoonAlram/config"
 	"NaverWebtoonAlram/postgresql/model"
+	"github.com/go-pg/pg/v10"
 	"github.com/go-pg/pg/v10/orm"
 )
 
@@ -84,4 +85,39 @@ func Read_sunday(models *[]model.SUNDAY_DB) error {
 func Insert_sunday(models []model.SUNDAY_DB) (orm.Result, error) {
 	result, err := config.DB.Model(&models).Insert()
 	return result, err
+}
+func Delete_Endtoon_monday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.MONDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_tuesday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.TUESDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_wednesday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.WEDNESDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_thursday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.THURSDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_friday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.FRIDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_saturday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.SATURDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
+}
+func Delete_Endtoon_sunday(endWebtoon []string) error{
+	ids := pg.In(endWebtoon)
+	_, err :=  config.DB.Model((*model.SUNDAY_DB)(nil)).Where("toon IN (?)",ids).Delete()
+	return err
 }
