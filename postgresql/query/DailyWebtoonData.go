@@ -58,6 +58,8 @@ func Read_friday(models *[]model.FRIDAY_DB) error {
 	return err
 }
 
+
+
 func Insert_friday(models []model.FRIDAY_DB) (orm.Result, error) {
 	result, err := config.DB.Model(&models).Insert()
 	return result, err
