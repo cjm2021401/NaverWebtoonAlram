@@ -9,6 +9,9 @@
     "url":"https://comic.naver.com/webtoon/weekdayList.nhn?week="
   },
   "slackwebhook" : {
-    "url" : "https://hooks.slack.com/services/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"
+    "url" : "https://hooks.slack.com/services/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"
+  },
+  "linetoken" : {
+    "token" : "Q4rtKfBY4CRzn2V5yBq6KYS53GL1O7tnTv6IB9HIrh0"
   }
 }

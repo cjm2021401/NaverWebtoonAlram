@@ -10,6 +10,7 @@ type Config struct {
 	Database Database
 	NaverWebtoon NaverWebtoon
 	SlackWebhook SlackWebhook
+	LineToken LineToken
 }
 type Database struct {
 	Url      string
@@ -24,7 +25,9 @@ type NaverWebtoon struct {
 type SlackWebhook struct {
 	Url string
 }
-
+type LineToken struct {
+	Token string
+}
 
 var DB *pg.DB
 var Env Config

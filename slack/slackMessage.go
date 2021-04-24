@@ -2,6 +2,7 @@ package slack
 
 import (
 	"NaverWebtoonAlram/config"
+	"NaverWebtoonAlram/line"
 	"bytes"
 	"net/http"
 )
@@ -14,6 +15,7 @@ func SendSlackEndWebtoon(endwebtoon string, dayofweek string)  {
 	}
 
 	defer resp.Body.Close()
+	line.EndwebtoonMessageLine(endwebtoon,dayofweek)
 }
 
 func SendSlackStartWebtoon(startwebtoon string, dayofweek string)  {
@@ -24,4 +26,5 @@ func SendSlackStartWebtoon(startwebtoon string, dayofweek string)  {
 	}
 
 	defer resp.Body.Close()
+	line.StartwebtoonSendLine(startwebtoon,dayofweek)
 }
