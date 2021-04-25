@@ -22,7 +22,7 @@ func ReadWriteAllday(){
 
 func DailydataCheck() {
 	today:=time.Now()
-	yesterday:=time.Date(today.Year(),today.Month(),today.Day()-1,0,0,0,0,today.Location())
+	yesterday:=time.Date(today.Year(),today.Month(),today.Day()-3,0,0,0,0,today.Location())
 	switch int(yesterday.Weekday()) {
 		case 0: {
 			var existed_data []model.SUNDAY_DB
@@ -131,7 +131,6 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
-					fmt.Println(EndWebtoon)
 					var dataset []string
 					for i := range EndWebtoon{
 						slack.SendSlackEndWebtoonImage(EndWebtoon[i].Toon, EndWebtoon[i].Image,"수요일")
@@ -164,7 +163,6 @@ func DailydataCheck() {
 				log.Println("Nothing changed")
 			}else{
 				if len(EndWebtoon)!=0{
-					fmt.Println(EndWebtoon)
 					var dataset []string
 					for i := range EndWebtoon{
 						slack.SendSlackEndWebtoonImage(EndWebtoon[i].Toon, EndWebtoon[i].Image, "목요일")
@@ -242,7 +240,7 @@ func DailydataCheck() {
 				if len(NewWebtoon)!=0{
 					var dataset []model.SATURDAY_DB
 					for i := range NewWebtoon {
-						slack.SendSlackStartWebtoonImage(NewWebtoon[i].Toon, EndWebtoon[i].Image,"토요일")
+						slack.SendSlackStartWebtoonImage(NewWebtoon[i].Toon, NewWebtoon[i].Image,"토요일")
 						dataset = append(dataset, NewWebtoon[i])
 					}
 					result, err:=query.Insert_saturday(dataset)

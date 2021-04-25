@@ -1,17 +1,17 @@
 {
   "database": {
-    "url": "127.0.0.1:5432",
-    "user": "jungmin",
-    "password": "g79465",
+    "url": "",
+    "user": "",
+    "password": "",
     "name": "naverwebtoon"
   },
   "naverwebtoon": {
-    "url":"https://comic.naver.com/webtoon/weekdayList.nhn?week="
+    "url":""
   },
   "slackwebhook" : {
-    "url" : "https://hooks.slack.com/services/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"
+    "url" : ""
   },
   "linetoken" : {
-    "token" : "Q4rtKfBY4CRzn2V5yBq6KYS53GL1O7tnTv6IB9HIrh0"
+    "token" : ""
   }
 }
