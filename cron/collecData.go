@@ -22,7 +22,7 @@ func ReadWriteAllday(){
 
 func DailydataCheck() {
 	today:=time.Now()
-	yesterday:=time.Date(today.Year(),today.Month(),today.Day()-3,0,0,0,0,today.Location())
+	yesterday:=time.Date(today.Year(),today.Month(),today.Day()-1,0,0,0,0,today.Location())
 	switch int(yesterday.Weekday()) {
 		case 0: {
 			var existed_data []model.SUNDAY_DB

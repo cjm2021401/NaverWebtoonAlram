@@ -12,7 +12,7 @@ func SetupCron(location string) (*cron.Cron, error) {
 		return nil, err
 	}
 	c := cron.New(cron.WithLocation(loc))
-	_,err=c.AddFunc("* * 8 * * *",  DailydataCheck)//매일 8시에 확인
+	_,err=c.AddFunc("0 8 * * *",  DailydataCheck)//매일 8시에 확인
 	if err != nil {
 		return nil, err
 	}
